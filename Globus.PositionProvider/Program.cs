@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using Newtonsoft.Json;
-using Globus.PositionProvider.Utils;
+using Globus.PositionProvider.Controllers;
 
 namespace Globus.PositionProvider
 {
@@ -17,6 +17,7 @@ namespace Globus.PositionProvider
     {
         public static void Main(string[] args)
         {
+            WsServer.InitServer();
             CreateHostBuilder(args).Build().Run();
         }
 
