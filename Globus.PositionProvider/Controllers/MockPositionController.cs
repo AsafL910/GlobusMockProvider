@@ -6,6 +6,7 @@ using WebSocketSharp;
 using WebSocketSharp.Server;
 using Newtonsoft.Json;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Globus.PositionProvider.Controllers
 {
@@ -24,17 +25,22 @@ namespace Globus.PositionProvider.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<long>> Post(Aircraft aircraft)
+        public async Task<ActionResult<Aircraft>> Post(Aircraft aircraft)
         {
-            _logger.LogDebug("Post Request for MockData");
-            MyTimer.StartTimer(aircraft);
             WsServer.mockDataServer.WebSocketServices.Broadcast(JsonConvert.SerializeObject(aircraft));
+            return Ok(aircraft);
 
-            while (MyTimer.isRunning){
-                Thread.Sleep(1);
-            }
+            // var stopwatch = new Stopwatch();
+            // stopwatch.Start();
 
-            return Ok(MyTimer.stopwatch.ElapsedMilliseconds);
+            // while (AircraftQueue.isEmpty()) {
+            //     if (stopwatch.ElapsedMilliseconds > 30) 
+            //     {
+            //         return NoContent();
+            //     }
+            // }
+
+            // return Ok(AircraftQueue.First());
         }
     }
 
