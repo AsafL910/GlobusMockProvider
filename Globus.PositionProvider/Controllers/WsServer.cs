@@ -24,12 +24,8 @@ namespace Globus.PositionProvider.Controllers
         }
     }
 
-        public class MockSelfData : WebSocketBehavior
+    public class MockSelfData : WebSocketBehavior
     {
-        protected override void OnMessage(MessageEventArgs eventArgs) {
-            var parsedData = JsonConvert.DeserializeObject<Aircraft>(eventArgs.Data);
-            MyTimer.StopTimer(parsedData);
-        }
     }
 
     public class SelfData : WebSocketBehavior

@@ -29,18 +29,6 @@ namespace Globus.PositionProvider.Controllers
         {
             WsServer.mockDataServer.WebSocketServices.Broadcast(JsonConvert.SerializeObject(aircraft));
             return Ok(aircraft);
-
-            // var stopwatch = new Stopwatch();
-            // stopwatch.Start();
-
-            // while (AircraftQueue.isEmpty()) {
-            //     if (stopwatch.ElapsedMilliseconds > 30) 
-            //     {
-            //         return NoContent();
-            //     }
-            // }
-
-            // return Ok(AircraftQueue.First());
         }
     }
 
